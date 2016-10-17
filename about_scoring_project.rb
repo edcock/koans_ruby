@@ -34,47 +34,54 @@ def score(dice)
   def score(dice)
     counts = Hash.new(0)
     result = 0
-
+    #count how many time each number occurs
     dice.each do |x|
       counts[x] += 1
     end
-
+    #For each number we calculate the score
     dice.uniq.each {|y|
       number_occurs = counts[y]
-
+      #we handle number with more or 3 occurences
       if number_occurs >= 3
         result = triple(y,result)
         number_occurs = number_occurs - 3
       end
-
+      #numbers with 1 or 2 occurence(s)
       if number_occurs < 3
         result = single(y,result, number_occurs)
       end
     }
     result
   end
+  # Triple function calculate the score for triple number
+  # @param [Object] number
+  # @param [Object] result
+  # @return [Object] result
 
-  def triple(number, score)
+  def triple(number, result)
     if number == 1
-      score += 1000
+      result += 1000
     else
-      score += number * 100
+      result += number * 100
     end
-    score
+    result
   end
 
-  def single(number, score, number_occurs)
+  # @param [Object] number
+  # @param [Object] result
+  # @param [Object] number_occurs
+  # @return [Object] result
+
+  def single(number, result, number_occurs)
     if number == 1
-      score += 100 * number_occurs
+      result += 100 * number_occurs
     elsif number == 5
-      score += 50 * number_occurs
+      result += 50 * number_occurs
     end
-    score
+    result
   end
 
 end
-
-score([1,1,1])
 
 class AboutScoringProject < Neo::Koan
   def test_score_of_an_empty_list_is_zero
