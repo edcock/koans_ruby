@@ -55,33 +55,33 @@ def score(dice)
   end
   # Triple function calculate the score for triple number
   # @param [Object] number
-  # @param [Object] result
+  # @param [Object] score
   # @return [Object] result
-
-  def triple(number, result)
+  def triple(number, score)
     if number == 1
-      result += 1000
+      score += 1000
     else
-      result += number * 100
+      score += number * 100
     end
-    result
+    score
   end
-
+  # Single function handle the numbers which pop once or twice
   # @param [Object] number
-  # @param [Object] result
+  # @param [Object] score
   # @param [Object] number_occurs
-  # @return [Object] result
 
-  def single(number, result, number_occurs)
+  def single(number, score, number_occurs)
     if number == 1
-      result += 100 * number_occurs
+      score += 100 * number_occurs
     elsif number == 5
-      result += 50 * number_occurs
+      score += 50 * number_occurs
     end
-    result
+    score
   end
 
 end
+
+score([1,1,1])
 
 class AboutScoringProject < Neo::Koan
   def test_score_of_an_empty_list_is_zero
